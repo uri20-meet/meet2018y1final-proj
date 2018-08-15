@@ -1,16 +1,23 @@
 import turtle
-
+import time
 level=0
 SIZE_X=1910
 SIZE_Y=1070
 turtle.setup(SIZE_X, SIZE_Y)
+turtle.delay()
 
-
+turtle.register_shape("questBorder.gif")
 turtle.register_shape("waterCan.gif")
 turtle.register_shape("gameoverv1.gif")
 turtle.register_shape("plantx.gif")
-turtle.hideturtle()
+turtle.register_shape("tree.gif")
+turtle.register_shape("questBorder.gif")
+turtle.register_shape("waterCan2.gif")
 
+questBorder = turtle.clone()
+questBorder.shape("questBorder.gif")
+questBorder.hideturtle()
+turtle.hideturtle()
 a=turtle.clone()
 a.hideturtle()
 titleTurtle = turtle.clone()
@@ -126,20 +133,21 @@ if True:
 
 
 def ask(question, answerA, answerB, answerC, answerD):
-	a.clear()
-	a.penup()
-	a.goto(-550,300)
-	a.write(question, move=True, align="center", font=('arial', 15, 'bold'))
-	a.goto(-800,200)
-	a.write(answerA, move=True, align="center", font=('arial', 15, 'bold'))
-	a.goto(-600,200)
-	a.write(answerB, move=True, align="center", font=('arial', 15, 'bold'))
-	a.goto(-400,200)
-	a.write(answerC, move=True, align="center", font=('arial', 15, 'bold'))
-	a.goto(-200,200)
-	a.write(answerD, move=True, align="center", font=('arial', 15, 'bold'))
 
-	
+        a.clear()
+        questBorder.showturtle()
+        a.penup()
+        a.goto(-550,300)
+        a.write(question, move=True, align="center", font=('arial', 15, 'bold'))
+        a.goto(-800,200)
+        a.write(answerA, move=True, align="center", font=('arial', 15, 'bold'))
+        a.goto(-600,200)
+        a.write(answerB, move=True, align="center", font=('arial', 15, 'bold'))
+        a.goto(-400,200)
+        a.write(answerC, move=True, align="center", font=('arial', 15, 'bold'))
+        a.goto(-200,200)
+        a.write(answerD, move=True, align="center", font=('arial', 15, 'bold'))
+        
 
 aA= False
 bA= False
@@ -170,7 +178,7 @@ def checkAnswer():
 		else:
 			gameover.showturtle()
 			quit()
-	elif level == 3 or level == 8:
+	elif level == 3:
 		
 		if aA:
 			a.write("Right Answer!", move=True, align="center", font=('times', 35, 'bold'))
@@ -189,7 +197,16 @@ def checkAnswer():
 		else:
 			gameover.showturtle()
 			quit()
+	elif level == 8:
 		
+		if aA:
+			a.write("Right Answer! \n You WON the game", move=True, align="center", font=('times', 35, 'bold'))
+			plant1.shape("tree.gif")
+			level+=1
+			checkLevel()
+		else:
+			gameover.showturtle()
+			quit()
 
 	
 
@@ -209,14 +226,14 @@ def checkAnswer():
 #define which question and answers
 
 #first
-firstQ = "how much trees cut down each day for toilet paper?"
+firstQ = "how many trees are cut down each day for toilet paper?"
 firstAnswerA = "A) 6,000"
 firstAnswerB = "B) 27,000"
 firstAnswerC = "C) 80,0000"
 firstAnswerD = "D) 1,000,000"
 
 #second
-secondQ = "How many years take to a glass bottle to decompose?"
+secondQ = "How many years it takes to a glass bottle to decompose?"
 secondAnswerA = "A) 1 year"
 secondAnswerB = "B) 800 years"
 secondAnswerC = "C) 4,000"
@@ -231,7 +248,7 @@ thirdAnswerD = "D) 10%"
 
 
 #fourth
-fourthQ = "The world's oldest trees are more then _________ years old"
+fourthQ = "The world's oldest trees are more than _________ years old"
 fourthAnswerA = "A) 9,800"
 fourthAnswerB = "B) 7,000"
 fourthAnswerC = "C) 600"
@@ -239,7 +256,7 @@ fourthAnswerD = "D) 4,600"
 
 
 #fifth        
-fifthQ = "Pollution has killed more then __________ people"
+fifthQ = "Pollution has killed more than __________ people"
 fifthAnswerA="A) 10 million"
 fifthAnswerB="B) 100 million"
 fifthAnswerC="C) 100,000"
@@ -249,7 +266,7 @@ fifthAnswerD="D) 1 trillion"
 
 
 
-sixthQ = "every __________ of recycled paper saves___________ trees"
+sixthQ = "Every __________ of recycled paper saves___________ trees"
 sixthAnswerA="A) 1,00 , 2"
 sixthAnswerB="B) 10,000 , 1"
 sixthAnswerC="C) 20 tons , 2"
@@ -257,7 +274,7 @@ sixthAnswerD="D) 1 ton , 7"
 
 #seventh
 
-seventhQ="how many aluminium cans do we consume every year? "
+seventhQ = "How many aluminium cans do we consume every year? "
 seventhAnswerA="A) 8,000,000"
 seventhAnswerB="B) over 800,000,000"
 seventhAnswerC="C) over 8 trillion"
@@ -265,7 +282,7 @@ seventhAnswerD="D) over 80 trillion "
 
 #eighth
 
-eighthQ="how many liters of water do we use when we flush the toilets"
+eighthQ="How many liters of water do we use when we flush the toilets"
 eighthAnswerA="A) 6 liters"
 eighthAnswerB="B) 10 liters "
 eighthAnswerC="C) 1 liter"
@@ -404,39 +421,85 @@ level=1
 
 
 def checkLevel():
-	if level == 1:
-		waterCan.goto(400, 170)
-		levelOne()
+        if level == 1:
+                waterCan.goto(400, 170)
+                levelOne()
 
-	if level == 2:
-		waterCan.left(90)
-		waterCan.goto(450, 0)
-		levelTwo()
+        if level == 2:
+                waterCan.shape("waterCan2.gif")
+                time.sleep(0.3)
+                plant2.shape("tree.gif")
+                time.sleep(0.3)
+                waterCan.shape("waterCan.gif")
+                time.sleep(0.05)
+                waterCan.goto(450, 0)
+                levelTwo()
 
-	if level == 3:
-		waterCan.goto(350, -170)
-		levelThree()
+        if level == 3:
+                waterCan.shape("waterCan2.gif")
+                time.sleep(0.3)
+                plant3.shape("tree.gif")
+                time.sleep(0.3)
+                waterCan.shape("waterCan.gif")
+                time.sleep(0.05)
+                waterCan.goto(350, -170)
+                levelThree()
 
-	if level == 4:
-		waterCan.goto(0, -250)
-		levelFour()
+        if level == 4:
+                waterCan.shape("waterCan2.gif")
+                time.sleep(0.3)
+                plant4.shape("tree.gif")
+                time.sleep(0.3)
+                waterCan.shape("waterCan.gif")
+                time.sleep(0.05)
+                waterCan.goto(0, -250)
+                levelFour()
 
-	if level == 5:
-		waterCan.goto(-350, -170)
-		levelFive()
+        if level == 5:
+                waterCan.shape("waterCan2.gif")
+                time.sleep(0.3)
+                plant5.shape("tree.gif")
+                time.sleep(0.3)
+                waterCan.shape("waterCan.gif")
+                time.sleep(0.05)
+                waterCan.goto(-350, -170)
+                levelFive()
 
-	if level == 6:
-		waterCan.goto(-450, 0)
-		levelSix()
+        if level == 6:
+                waterCan.shape("waterCan2.gif")
+                time.sleep(0.3)
+                plant6.shape("tree.gif")
+                time.sleep(0.3)
+                waterCan.shape("waterCan.gif")
+                time.sleep(0.05)
+                waterCan.goto(-450, 0)
+                levelSix()
 
-	if level == 7:
-		waterCan.goto(-400, 170)
-		levelSeven()
+        if level == 7:
+                waterCan.shape("waterCan2.gif")
+                time.sleep(0.3)
+                plant7.shape("tree.gif")
+                time.sleep(0.3)
+                waterCan.shape("waterCan.gif")
+                time.sleep(0.05)
+                waterCan.goto(-400, 170)
+                levelSeven()
 
-	if level == 8:
-		waterCan.goto(0, 220)
-		levelEight()
-
+        if level == 8:
+                waterCan.shape("waterCan2.gif")
+                time.sleep(0.3)
+                plant8.shape("tree.gif")
+                time.sleep(0.3)
+                waterCan.shape("waterCan.gif")
+                time.sleep(0.05)
+                waterCan.goto(0, 220)
+                levelEight()
+                waterCan.shape("waterCan2.gif")
+                time.sleep(0.3)
+                plant8.shape("tree.gif")
+                time.sleep(0.3)
+                waterCan.shape("waterCan.gif")
+                time.sleep(0.05)
 
 
 checkLevel()
