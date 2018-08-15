@@ -1,6 +1,6 @@
 import turtle
 
-
+level=0
 SIZE_X=1910
 SIZE_Y=1070
 turtle.setup(SIZE_X, SIZE_Y)
@@ -8,7 +8,7 @@ turtle.setup(SIZE_X, SIZE_Y)
 
 turtle.register_shape("waterCan.gif")
 turtle.register_shape("gameoverv1.gif")
-turtle.register_shape("plant.gif")
+turtle.register_shape("plantx.gif")
 turtle.hideturtle()
 
 a=turtle.clone()
@@ -21,8 +21,57 @@ titleTurtle.color('black')
 titleTurtle.write("Answer And Win!", move=True, align="center", font=('Comic Sans MS', 100, 'bold'))
 titleTurtle.hideturtle()
 
+plant1 = turtle.clone()
+plant1.shape("plantx.gif")
+plant1.penup()
+plant1.goto(0,70)
+plant1.showturtle()
+
+
+plant2 = turtle.clone()
+plant2.shape("plantx.gif")
+plant2.penup()
+plant2.goto(400,20)
+plant2.showturtle()
+
+plant3 = turtle.clone()
+plant3.shape("plantx.gif")
+plant3.penup()
+plant3.goto(450,-150)
+plant3.showturtle()
+
+plant4 = turtle.clone()
+plant4.shape("plantx.gif")
+plant4.penup()
+plant4.goto(350,-320)
+plant4.showturtle()
+
+plant5 = turtle.clone()
+plant5.shape("plantx.gif")
+plant5.penup()
+plant5.goto(0,-400)
+plant5.showturtle()
+
+plant6 = turtle.clone()
+plant6.shape("plantx.gif")
+plant6.penup()
+plant6.goto(-350,-320)
+plant6.showturtle()
+
+plant7 = turtle.clone()
+plant7.shape("plantx.gif")
+plant7.penup()
+plant7.goto(-450,-150)
+plant7.showturtle()
+
+plant8 = turtle.clone()
+plant8.shape("plantx.gif")
+plant8.penup()
+plant8.goto(-400,20)
+plant8.showturtle()
 
 gameover=turtle.clone()
+gameover.shape("gameoverv1.gif")
 gameover.hideturtle()
 waterCan =turtle.clone()
 waterCan.hideturtle()
@@ -32,39 +81,41 @@ waterCan.goto(0, 220)
 waterCan.showturtle()
 
 #moving the water can to every plant
+# if True:
+	
+	#waterCan.right(90)
+	#waterCan.left(90)
+
+'''
 if True:
-    waterCan.goto(400, 170)
-    #waterCan.right(90)
-    #waterCan.left(90)
-if True:
-    waterCan.goto(450, 0)
-    #waterCan.right(90)
-    #waterCan.left(90)
+	waterCan.goto(450, 0)
+	#waterCan.right(90)
+	#waterCan.left(90)
 
 if True:
-    waterCan.goto(350, -170)
-    #waterCan.right(90)
-    #waterCan.left(90)
+	waterCan.goto(350, -170)
+	#waterCan.right(90)
+	#waterCan.left(90)
 
 if True:
-    waterCan.goto(0, -250)
-    #waterCan.right(90)
-    #waterCan.left(90)
+	waterCan.goto(0, -250)
+	#waterCan.right(90)
+	#waterCan.left(90)
 
 if True:
-    waterCan.goto(-350, -170)
-    #waterCan.right(90)
-    #waterCan.left(90)
+	waterCan.goto(-350, -170)
+	#waterCan.right(90)
+	#waterCan.left(90)
 if True:
-    waterCan.goto(-450, 0)
-    #waterCan.right(90)
-    #waterCan.left(90)
+	waterCan.goto(-450, 0)
+	#waterCan.right(90)
+	#waterCan.left(90)
 
 if True:
-    waterCan.goto(-400, 170)
-    #waterCan.right(90)
-    #waterCan.left(90)
-
+	waterCan.goto(-400, 170)
+	#waterCan.right(90)
+	#waterCan.left(90)
+'''
 
 
 #waterCan.shape("circle")
@@ -74,32 +125,73 @@ if True:
 
 
 
-def  ask (question, answerA, answerB, answerC, answerD) :
+def ask(question, answerA, answerB, answerC, answerD):
+	a.clear()
+	a.penup()
+	a.goto(-550,300)
+	a.write(question, move=True, align="center", font=('arial', 15, 'bold'))
+	a.goto(-800,200)
+	a.write(answerA, move=True, align="center", font=('arial', 15, 'bold'))
+	a.goto(-600,200)
+	a.write(answerB, move=True, align="center", font=('arial', 15, 'bold'))
+	a.goto(-400,200)
+	a.write(answerC, move=True, align="center", font=('arial', 15, 'bold'))
+	a.goto(-200,200)
+	a.write(answerD, move=True, align="center", font=('arial', 15, 'bold'))
 
-    a.penup()
-    a.goto(-550,300)
-    a.write(question, move=True, align="center", font=('arial', 15, 'bold'))
-    a.goto(-750,200)
-    a.write(answerA, move=True, align="center", font=('arial', 15, 'bold'))
-    a.goto(-650,200)
-    a.write(answerB, move=True, align="center", font=('arial', 15, 'bold'))
-    a.goto(-550,200)
-    a.write(answerC, move=True, align="center", font=('arial', 15, 'bold'))
-    a.goto(-425,200)
-    a.write(answerD, move=True, align="center", font=('arial', 15, 'bold'))
+	
 
-    
+aA= False
+bA= False
+cA= False
+dA= False
 
+def checkAnswer():
+	global level, aA, bA, cA, dA
 
+	a.goto(-550,100)
+	
+	if level == 1 or level == 5:
+		
+		if bA:
+			a.write("Right Answer!", move=True, align="center", font=('times', 35, 'bold'))
+			level+=1
+			checkLevel()
+			
+		else:
+			gameover.showturtle()
+			quit()
+	elif level == 2:
+		
+		if cA:
+			a.write("Right Answer!", move=True, align="center", font=('times', 35, 'bold'))
+			level+=1
+			checkLevel()
+		else:
+			gameover.showturtle()
+			quit()
+	elif level == 3 or level == 8:
+		
+		if aA:
+			a.write("Right Answer!", move=True, align="center", font=('times', 35, 'bold'))
+			level+=1
+			checkLevel()
+		else:
+			gameover.showturtle()
+			quit()
 
+	elif level == 4 or level == 6 or level == 7:
+		
+		if dA:
+			a.write("Right Answer!", move=True, align="center", font=('times', 35, 'bold'))
+			level+=1
+			checkLevel()
+		else:
+			gameover.showturtle()
+			quit()
+		
 
-
-
-
-
-
-
-
+	
 
 
 
@@ -179,16 +271,204 @@ eighthAnswerB="B) 10 liters "
 eighthAnswerC="C) 1 liter"
 eighthAnswerD="D) 40 liters "
 
+def userAnswerA():
+	global aA, bA, cA, dA
+	aA=True
+	bA= False
+	cA= False
+	dA= False
+	checkAnswer()
+def userAnswerB():
+	print("1")
+	global aA, bA, cA, dA
+	bA=True
+	aA= False
+	cA= False
+	dA= False
+	checkAnswer()
+	
+def userAnswerC():
+	global aA, bA, cA, dA
+	cA=True
+	aA= False
+	bA= False
+	dA= False
+	checkAnswer()
+	
+def userAnswerD():
+	global aA, bA, cA, dA
+	dA=True
+	aA= False
+	bA= False
+	cA= False
+	checkAnswer()
+	
 
-#call to functions 
-ask(firstQ, firstAnswerA, firstAnswerB, firstAnswerC, firstAnswerD)
+
+
+def levelOne():
+	global level
+	level=1
+	ask(firstQ, firstAnswerA, firstAnswerB, firstAnswerC, firstAnswerD)
+	turtle.onkeypress(userAnswerA, "a")
+	turtle.onkeypress(userAnswerB, "b")
+	turtle.onkeypress(userAnswerC, "c")
+	turtle.onkeypress(userAnswerD, "d")
+
+	turtle.listen()
+	
+def levelTwo():
+	global level
+	print("level2")
+	level=2
+	ask(secondQ, secondAnswerA, secondAnswerB, secondAnswerC, secondAnswerD)
+	turtle.onkeypress(userAnswerA, "a")
+	turtle.onkeypress(userAnswerB, "b")
+	turtle.onkeypress(userAnswerC, "c")
+	turtle.onkeypress(userAnswerD, "d")
+
+	turtle.listen()
+
+def levelThree():
+	global level
+	level=3
+	ask(thirdQ, thirdAnswerA, thirdAnswerB, thirdAnswerC, thirdAnswerD)
+	turtle.onkeypress(userAnswerA, "a")
+	turtle.onkeypress(userAnswerB, "b")
+	turtle.onkeypress(userAnswerC, "c")
+	turtle.onkeypress(userAnswerD, "d")
+
+	turtle.listen()
+
+
+def levelFour():
+	global level
+	level=4
+	ask(fourthQ, fourthAnswerA, fourthAnswerB, fourthAnswerC, fourthAnswerD)
+	turtle.onkeypress(userAnswerA, "a")
+	turtle.onkeypress(userAnswerB, "b")
+	turtle.onkeypress(userAnswerC, "c")
+	turtle.onkeypress(userAnswerD, "d")
+
+	turtle.listen()
+
+
+def levelFive():
+	global level
+	level=5
+	ask(fifthQ, fifthAnswerA, fifthAnswerB, fifthAnswerC, fifthAnswerD)
+	turtle.onkeypress(userAnswerA, "a")
+	turtle.onkeypress(userAnswerB, "b")
+	turtle.onkeypress(userAnswerC, "c")
+	turtle.onkeypress(userAnswerD, "d")
+
+	turtle.listen()
+
+
+def levelSix():
+	global level
+	level=6
+	ask(sixthQ, sixthAnswerA, sixthAnswerB, sixthAnswerC, sixthAnswerD)
+	turtle.onkeypress(userAnswerA, "a")
+	turtle.onkeypress(userAnswerB, "b")
+	turtle.onkeypress(userAnswerC, "c")
+	turtle.onkeypress(userAnswerD, "d")
+
+	turtle.listen()
+
+
+def levelSeven():
+	global level
+	level=7
+	ask(seventhQ, seventhAnswerA, seventhAnswerB, seventhAnswerC, seventhAnswerD)
+	turtle.onkeypress(userAnswerA, "a")
+	turtle.onkeypress(userAnswerB, "b")
+	turtle.onkeypress(userAnswerC, "c")
+	turtle.onkeypress(userAnswerD, "d")
+
+	turtle.listen()
+
+
+def levelEight():
+	global level
+	level=8
+	ask(eighthQ, eighthAnswerA, eighthAnswerB, eighthAnswerC, eighthAnswerD)
+	turtle.onkeypress(userAnswerA, "a")
+	turtle.onkeypress(userAnswerB, "b")
+	turtle.onkeypress(userAnswerC, "c")
+	turtle.onkeypress(userAnswerD, "d")
+
+	turtle.listen()
+
+level=1
+
+
+def checkLevel():
+	if level == 1:
+		waterCan.goto(400, 170)
+		levelOne()
+
+	if level == 2:
+		waterCan.left(90)
+		waterCan.goto(450, 0)
+		levelTwo()
+
+	if level == 3:
+		waterCan.goto(350, -170)
+		levelThree()
+
+	if level == 4:
+		waterCan.goto(0, -250)
+		levelFour()
+
+	if level == 5:
+		waterCan.goto(-350, -170)
+		levelFive()
+
+	if level == 6:
+		waterCan.goto(-450, 0)
+		levelSix()
+
+	if level == 7:
+		waterCan.goto(-400, 170)
+		levelSeven()
+
+	if level == 8:
+		waterCan.goto(0, 220)
+		levelEight()
+
+
+
+checkLevel()
+
+
+
+
+
+'''
+levelTwo()
+levelThree()
+levelFour()
+levelFive()
+levelSix()
+levelSeven()
+levelEight()
+'''
+'''
 ask(secondQ, secondAnswerA, secondAnswerB, secondAnswerC, secondAnswerD)
+
 ask(thirdQ, thirdAnswerA, thirdAnswerB, thirdAnswerC, thirdAnswerD)
+
 ask(fourthQ, fourthAnswerA, fourthAnswerB, fourthAnswerC, fourthAnswerD)
+
 ask(fifthQ, fifthAnswerA, fifthAnswerB, fifthAnswerC, fifthAnswerD)
+
 ask(sixthQ, sixthAnswerA, sixthAnswerB, sixthAnswerC, sixthAnswerD)
+
 ask(seventhQ, seventhAnswerA, seventhAnswerB, seventhAnswerC, seventhAnswerD)
 
+ask(eighthQ, eighthAnswerA,eighthAnswerB ,eighthAnswerC ,eighthAnswerD)
+'''
 
 
 
@@ -203,75 +483,77 @@ ask(seventhQ, seventhAnswerA, seventhAnswerB, seventhAnswerC, seventhAnswerD)
 
 
 
-#noya is here
 
+'''
 userAnswer=str(input(""))
 
 count = "b"
 if count != userAnswer:
-    print('wrong answer')
+	print('wrong answer')
 elif count== userAnswer:
-    print('right answer')
+	print('right answer')
 
 count = "c"
 if count != userAnswer:
-    print('wrong answer')
+	print('wrong answer')
 elif count == userAnswer:
-    print('right answer')
+	print('right answer')
 
 count = "a"
 if count != userAnswer:
-    print('wrong answer')
+	print('wrong answer')
 elif count == userAnswer:
-    print('right answer')
+	print('right answer')
 
 count = "d"
 if count != userAnswer:
-    print('wrong answer')
+	print('wrong answer')
 elif count == userAnswer:
-    print('right answer')
+	print('right answer')
 
 count = "b"
 if count != userAnswer:
-    print('wrong answer')
+	print('wrong answer')
 elif count == userAnswer:
-    print('right answer')
+	print('right answer')
 
 count = "d"
 if count != userAnswer:
-    print('wrong answer')
+	print('wrong answer')
 elif count == userAnswer:
-    print('right answer')
+	print('right answer')
 
 count = "d"
 if count != userAnswer:
-    print('wrong answer')
+	print('wrong answer')
 elif count == userAnswer:
-    print('right answer')
+	print('right answer')
 
 count = "a"
 if count != userAnswer:
-    print('wrong answer')
+	print('wrong answer')
 elif count == userAnswer:
-    print('right answer')
+	print('right answer')
 
 if level==1:
-    ask(firstQ, firstAnswerA, firstAnswerB ,firstAnswerC ,firstAnswerD)
+	ask(firstQ, firstAnswerA, firstAnswerB ,firstAnswerC ,firstAnswerD)
 elif level==2:
-    ask(secondQ, secondAnswerA, secondAnswerB ,secondAnswerC ,secondAnswerD)
+	ask(secondQ, secondAnswerA, secondAnswerB ,secondAnswerC ,secondAnswerD)
 elif level==3:
-    ask(thirdQ, thirdAnswerA, thirdAnswerB ,thirdAnswerC ,thirdAnswerD)
+	ask(thirdQ, thirdAnswerA, thirdAnswerB ,thirdAnswerC ,thirdAnswerD)
 elif level==4:
-    ask(forthQ, forthAnswerA,forthAnswerB ,forthAnswerC ,forthAnswerD)
+	ask(forthQ, forthAnswerA,forthAnswerB ,forthAnswerC ,forthAnswerD)
 elif level==5:
-    ask(fifthQ, fifthAnswerA,fifthAnswerB ,fifthAnswerC ,fifthAnswerD)
+	ask(fifthQ, fifthAnswerA,fifthAnswerB ,fifthAnswerC ,fifthAnswerD)
 elif level==6:
-    ask(sixthQ, sixthAnswerA,sixthAnswerB ,sixthAnswerC ,sixthAnswerD)
+	ask(sixthQ, sixthAnswerA,sixthAnswerB ,sixthAnswerC ,sixthAnswerD)
 elif level==7:
-    ask(seventhQ, seventhAnswerA,seventhAnswerB ,seventhAnswerC ,seventhAnswerD)
+	ask(seventhQ, seventhAnswerA,seventhAnswerB ,seventhAnswerC ,seventhAnswerD)
 elif level==8:
-    ask(eighthQ, eighthAnswerA,eighthAnswerB ,eighthAnswerC ,eighthAnswerD)
-    
+	ask(eighthQ, eighthAnswerA,eighthAnswerB ,eighthAnswerC ,eighthAnswerD)
+'''
+
+
 
 
 
@@ -279,7 +561,7 @@ elif level==8:
 turtle.mainloop()
 
 
-                      
+					  
 
 
 
