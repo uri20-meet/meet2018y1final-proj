@@ -1,5 +1,5 @@
-
 #Music import
+
 from pygame import mixer # Load the required library
 
 #imports
@@ -151,13 +151,14 @@ cA= False
 dA= False
 score=0
 
+
 #restart function
 
-'''
 def restart():
         global score, level
         score=0
         level=0
+        a.clear()
         plant1.shape("plantx.gif")
         plant2.shape("plantx.gif")
         plant3.shape("plantx.gif")
@@ -167,10 +168,15 @@ def restart():
         plant7.shape("plantx.gif")
         plant8.shape("plantx.gif")
         waterCan.goto(0, 220)
+        a.goto(-630, 100)
+        a.write("Starting Over!", move=True, align="center", font=('Comic Sans MS', 35, 'bold'))
+        time.sleep(2)
+        a.clear()
+        level=1
         checkLevel()
         
         
-'''
+
 
 
 
@@ -364,16 +370,13 @@ def checkAnswer():
 						a.color('goldenrod')
 						a.write("You planted \n"+ str(score) +"\8 trees!", move=True, align="center", font=('Comic Sans MS', 55, 'bold'))
 						time.sleep(3)
-						quit()
-						'''
 						a.clear()
 						a.color('goldenrod')
-						a.goto(-700, 50) 
+						a.goto(-630, 80) 
 						a.write("Press 'r' to restart \n or 'f' to finish!", move=True, align="center", font=('Comic Sans MS', 35, 'bold'))
 						turtle.onkeypress(restart, "r")
 						turtle.onkeypress(quit, "f")
 						turtle.listen()
-						'''
 						
 				else:
 						a.color('red')
@@ -383,20 +386,18 @@ def checkAnswer():
 						plant1.shape("deadPlant.gif")
 						time.sleep(0.05)
 						a.clear()
-						a.goto(-630, 50)
+						a.goto(-630, 80)
 						a.color('goldenrod')
 						a.write("You planted \n"+ str(score) +"\8 trees!", move=True, align="center", font=('Comic Sans MS', 55, 'bold'))
 						time.sleep(3)
-						quit()
-						'''
 						a.clear()
 						a.color('goldenrod')
-						a.goto(-700, 50)
+						a.goto(-630, 100)
 						a.write("Press 'r' to restart \n or 'f' to finish!", move=True, align="center", font=('Comic Sans MS', 35, 'bold'))
 						turtle.onkeypress(restart, "r")
 						turtle.onkeypress(quit, "f")
 						turtle.listen()
-						'''
+						
 						
 
 
